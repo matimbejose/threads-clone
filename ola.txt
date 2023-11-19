@@ -1,0 +1,2 @@
+PRE BUILD COMANDA TO EXPO REACT NATIVE:
+npx expo prebuild -p android
