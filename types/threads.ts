@@ -10,7 +10,7 @@ export interface Thread {
     mentionUser: User;
     createdAt: string;
   }
-  
+    
   export interface Reply {
     id: string;
     author: User;

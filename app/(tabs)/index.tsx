@@ -2,15 +2,14 @@ import * as React from 'react'
 import { SafeAreaView , ScrollView,RefreshControl,Platform, StyleSheet } from 'react-native';
 import { Text, View } from '../../components/Themed';
 import Lottie from 'lottie-react-native'
-// import { createRandomUser } from '../../utils/generete-dommy-data';
+import { ThreadContext } from '../../context/thread-context';
+import ThreadsItem from '../../components/ThreadsItem';
 
-// const user  = createRandomUser();
-
-
-// console.log(JSON.stringify(user, null, 2))
 
 export default function TabOneScreen() {
   const animationRef  = React.useRef<Lottie>(null);
+  const threads  = React.useContext(ThreadContext);
+
   return (
     <SafeAreaView>
       <ScrollView
@@ -37,6 +36,9 @@ export default function TabOneScreen() {
           alignSelf: 'center'
         }} 
         />
+        {threads.map((thread) => (
+        <ThreadsItem key={ thread.id} {...thread} />
+        ))}
       </ScrollView>
     </SafeAreaView>
   );

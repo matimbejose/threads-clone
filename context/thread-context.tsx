@@ -1,14 +1,19 @@
-import * as React from 'react'
-import { Thread } from '../types/threads'
+import * as React from "react";
+import { Thread } from "../types/threads";
 import { generateThreads } from '../utils/generete-dommy-data'
 
+export const ThreadContext = React.createContext<Thread[]>([]);
 
-export const ThreadsContext = React.createContext<Thread[]>([])
+export const ThreadProvdier = ({
+  children,
+}: React.PropsWithChildren): JSX.Element => {
+  const [threads, setThreads] = React.useState<Thread[]>([]);
 
+  React.useEffect(() => {
+    setThreads(generateThreads());
+  }, []);
 
-export const ThreadProvider = ({ children }:React.PropsWithChildren):JSX.Element => {
-    const [ threads, setThreads] = React.useState<Thread[]>([])
-    React.useEffect(() => {setThreads(generateThreads())}, [])
-    return <ThreadsContext.Provider value={ threads }>
-    </ThreadsContext.Provider>
-}
+  return (
+    <ThreadContext.Provider value={threads}>{children}</ThreadContext.Provider>
+  );
+};
